@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      generoId: {
+      genero_id: {  
         type: Sequelize.INTEGER,
         references: {
           model: 'generos',
@@ -21,12 +21,12 @@ module.exports = {
         },
         allowNull: false,
       },
-      createdAt: {
+      created_at: { 
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.NOW,
       },
-      updatedAt: {
+      updated_at: { 
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.NOW,

@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    generoId: {
+    genero_id: {  
       type: DataTypes.INTEGER,
       references: {
         model: 'generos',
@@ -26,10 +26,10 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Artista.associate = function(models) {
-    // Definindo o relacionamento com a tabela 'generos'
-    Artista.belongsTo(models.Genero, { foreignKey: 'generoId' });
-    // Definindo o relacionamento com a tabela 'discos'
-    Artista.hasMany(models.Disco, { foreignKey: 'generoId' });
+    // Relacionamento com a tabela 'generos'
+    Artista.belongsTo(models.Genero, { foreignKey: 'genero_id' });
+    // Relacionamento com a tabela 'discos'
+    Artista.hasMany(models.Disco, { foreignKey: 'artista_id' });
   };
 
   return Artista;
