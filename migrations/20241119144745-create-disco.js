@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      anoLancamento: {
+      ano_lancamento: { 
         type: Sequelize.INTEGER,
         allowNull: false,
       },
@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      generoId: {
+      genero_id: { 
         type: Sequelize.INTEGER,
         references: {
           model: 'generos',
@@ -29,12 +29,12 @@ module.exports = {
         },
         allowNull: false,
       },
-      createdAt: {
+      created_at: { 
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.NOW,
       },
-      updatedAt: {
+      updated_at: { 
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.NOW,
