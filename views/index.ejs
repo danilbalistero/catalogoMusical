@@ -1,41 +1,45 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo Musical</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title><%= title %></title>
 </head>
 <body>
-  <h1>Catálogo de Discos</h1>
-  
-  <h2>Listagem de Discos</h2>
-  <ul>
-    <% discos.forEach(disco => { %>
-      <li>
-        <strong><%= disco.titulo %></strong> - <%= disco.anoLancamento %>
-        <br>
-        <img src="<%= disco.capa %>" alt="Capa do disco" width="100">
-      </li>
-    <% }) %>
-  </ul>
-
-  <h2>Cadastrar Novo Disco</h2>
-  <form action="/discos" method="POST" enctype="multipart/form-data">
-    <label for="titulo">Título:</label>
-    <input type="text" name="titulo" id="titulo" required>
-    <br>
-    <label for="anoLancamento">Ano de Lançamento:</label>
-    <input type="number" name="anoLancamento" id="anoLancamento" required>
-    <br>
-    <label for="generoId">Gênero:</label>
-    <select name="generoId" id="generoId" required>
-      <!-- Opções de gêneros -->
-    </select>
-    <br>
-    <label for="capa">Capa:</label>
-    <input type="file" name="capa" id="capa" accept="image/*">
-    <br>
-    <button type="submit">Cadastrar Disco</button>
-  </form>
+    <div class="container">
+        <header class="header">
+            <div class="vinyl-record">
+                <div class="record-center"></div>
+            </div>
+            <h1>Catálogo Musical</h1>
+        </header>
+        
+        <nav class="menu">
+            <div class="menu-item">
+                <a href="/api/disco">
+                    <i class="fas fa-compact-disc"></i>
+                    <span>Discos</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="/api/artista">
+                    <i class="fas fa-microphone-alt"></i>
+                    <span>Artistas</span>
+                </a>
+            </div>
+            <div class="menu-item">
+                <a href="/api/genero">
+                    <i class="fas fa-music"></i>
+                    <span>Gêneros</span>
+                </a>
+            </div>
+        </nav>
+        
+        <footer>
+            <p>Explore nossa coleção musical</p>
+        </footer>
+    </div>
 </body>
 </html>
