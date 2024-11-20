@@ -1,4 +1,4 @@
-const { Disco } = require('../models');
+const { Disco, Genero } = require('../models');
 
 module.exports = {
   async criar(req, res) {
@@ -12,8 +12,19 @@ module.exports = {
 
   async listar(req, res) {
     try {
-      const discos = await Disco.findAll();
-      return res.status(200).json(discos);
+      const discos = await Disco.findAll({
+        include: { model: Genero }, 
+      });
+      res.render('discos', { discos });
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
+  },
+
+  async mostrarCadastro(req, res) {
+    try {
+      const generos = await Genero.findAll();
+      res.render('cadastrarDisco', { generos });
     } catch (error) {
       return res.status(400).json({ error: error.message });
     }

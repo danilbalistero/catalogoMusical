@@ -18,9 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Genero.associate = function(models) {
-    // Definindo o relacionamento com a tabela 'discos'
     Genero.hasMany(models.Disco, { foreignKey: 'generoId' });
-    // Definindo o relacionamento com a tabela 'artistas'
     Genero.hasMany(models.Artista, { foreignKey: 'generoId' });
   };
 

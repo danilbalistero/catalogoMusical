@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    ano_lancamento: { // Use o snake_case aqui
+    ano_lancamento: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    genero_id: { // Use o snake_case aqui
+    genero_id: { 
       type: DataTypes.INTEGER,
       references: {
         model: 'generos',
@@ -34,7 +34,6 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Disco.associate = function(models) {
-    // Definindo o relacionamento com a tabela 'generos'
     Disco.belongsTo(models.Genero, { foreignKey: 'genero_id' });
   };
 

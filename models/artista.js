@@ -26,10 +26,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Artista.associate = function(models) {
-    // Relacionamento com a tabela 'generos'
     Artista.belongsTo(models.Genero, { foreignKey: 'genero_id' });
-    // Relacionamento com a tabela 'discos'
-    Artista.hasMany(models.Disco, { foreignKey: 'artista_id' });
   };
 
   return Artista;

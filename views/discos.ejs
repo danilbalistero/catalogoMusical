@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Disco</title>
-    <link rel="stylesheet" href="/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styledisco.css">
+  <title>Catálogo Musical</title>
 </head>
 <body>
-    <h1>Cadastrar Disco</h1>
-    <form action="/api/disco" method="POST">
-        <div>
-            <label for="titulo">Título:</label>
-            <input type="text" name="titulo" id="titulo" required>
-        </div>
-        <div>
-            <label for="ano_lancamento">Ano de Lançamento:</label>
-            <input type="number" name="ano_lancamento" id="ano_lancamento" required>
-        </div>
-        <div>
-            <label for="capa">Capa (URL da Imagem):</label>
-            <input type="text" name="capa" id="capa">
-        </div>
-        <div>
-            <label for="generoId">Gênero:</label>
-            <select name="generoId" id="generoId" required>
-                <% generos.forEach(genero => { %>
-                    <option value="<%= genero.id %>"><%= genero.nome %></option>
-                <% }) %>
-            </select>
-        </div>
-        <button type="submit">Cadastrar Disco</button>
-    </form>
+  <header>
+    <h1>Catálogo de Discos</h1>
+    <nav>
+      <a href="/">Página Inicial</a>
+      <a href="/disco">Cadastrar Disco</a> 
+    </nav>
+  </header>
+
+  <section>
+    <h2>Discos Cadastrados</h2>
+    <div class="discos-lista">
+      <% if (discos && discos.length > 0) { %>
+        <ul>
+          <% discos.forEach(disco => { %>
+            <li>
+              <h3><%= disco.titulo %> - <%= disco.ano_lancamento %></h3>
+              <% if (disco.capa) { %>
+                <img src="<%= disco.capa %>" alt="Capa do disco <%= disco.titulo %>">
+              <% } %>
+              <p>Gênero: <%= disco.Genero.nome %></p> 
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>Não há discos cadastrados.</p>
+      <% } %>
+    </div>
+  </section>
 </body>
 </html>
