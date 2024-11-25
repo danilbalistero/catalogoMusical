@@ -1,0 +1,15 @@
+<%- include('layout') %>
+
+<h2>Lista de Artistas</h2>
+<ul>
+  <% artistas.forEach(artista => { %>
+    <li>
+      <h3><%= artista.nome %> - <%= artista.Genero.nome %></h3>
+      <ul>
+        <% artista.Discos.forEach(disco => { %>
+          <li><%= disco.titulo %> - <%= disco.ano_lancamento %></li>
+        <% }) %>
+      </ul>
+    </li>
+  <% }) %>
+</ul>

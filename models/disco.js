@@ -1,33 +1,9 @@
-'use strict';
-
 module.exports = (sequelize, DataTypes) => {
   const Disco = sequelize.define('Disco', {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    titulo: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    ano_lancamento: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    capa: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    genero_id: { 
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'generos',
-        key: 'id',
-      },
-      allowNull: false,
-    },
+    titulo: DataTypes.STRING,
+    ano_lancamento: DataTypes.INTEGER,
+    capa: DataTypes.STRING,
+    genero_id: DataTypes.INTEGER
   }, {
     tableName: 'discos',
     underscored: true,

@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      disco_id: {  
+      disco_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'discos',
@@ -25,12 +25,12 @@ module.exports = {
         },
         allowNull: false,
       },
-      created_at: {  
+      created_at: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.NOW,
       },
-      updated_at: {  
+      updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.NOW,

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/cadastro.css">
+  <title>Cadastrar Novo Gênero</title>
+</head>
+<body>
+  <h1>Cadastrar Novo Gênero</h1>
+
+  <form action="/generos/novo" method="POST">
+    <div>
+      <label for="nome">Nome do Gênero:</label>
+      <input type="text" id="nome" name="nome" required>
+    </div>
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <br>
+  <a href="/generos">Voltar para lista de Gêneros</a>
+</body>
+</html>

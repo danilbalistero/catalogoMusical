@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      ano_lancamento: { 
+      ano_lancamento: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
@@ -21,20 +21,20 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      genero_id: { 
+      genero_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'generos',
+          model: 'generos', 
           key: 'id',
         },
         allowNull: false,
       },
-      created_at: { 
+      created_at: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.NOW,
       },
-      updated_at: { 
+      updated_at: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.NOW,
@@ -42,7 +42,6 @@ module.exports = {
     });
   },
 
-  
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('discos');
   },

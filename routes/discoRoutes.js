@@ -1,11 +1,16 @@
 const express = require('express');
-const multer = require('multer');
-const discoController = require('../controllers/discoController');
-
 const router = express.Router();
-const upload = multer({ dest: 'uploads/' });
+const discoController = require('../controllers/discoController');
+const upload = require('../middlewares/upload'); // Importa o middleware
 
-router.post('/disco', upload.single('capa'), discoController.criar);
-router.get('/disco/novo', discoController.mostrarCadastro);
+// Rota para cadastrar o disco com upload de imagem
+router.post('/', upload.single('capa'), discoController.criarDisco);
+
+router.get('/', discoController.listarDiscos);
+router.get('/novo', discoController.exibirFormulario);  
+router.post('/novo', discoController.criarDisco);
+router.get('/editar/:id', discoController.editarDisco);
+router.post('/editar/:id', discoController.atualizarDisco);
+router.post('/deletar/:id', discoController.deletarDisco);
 
 module.exports = router;

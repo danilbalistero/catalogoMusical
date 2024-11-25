@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/genero.css">
+  <title>Lista de Gêneros Musicais</title>
+</head>
+<body>
+  <h1>Lista de Gêneros Musicais</h1>
+  
+  <nav>
+    <a href="/generos/novo">Cadastrar Novo Gênero</a>
+  </nav>
+
+  <h2>Gêneros Cadastrados</h2>
+  <ul>
+    <% generos.forEach(genero => { %>
+      <li>
+        <span><%= genero.nome %></span>
+        <div class="actions">
+          <a href="/generos/editar/<%= genero.id %>" class="btn btn-edit">Editar</a>
+          <form action="/generos/deletar/<%= genero.id %>" method="POST" class="inline-form">
+            <button type="submit" class="btn btn-delete">Deletar</button>
+          </form>
+        </div>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

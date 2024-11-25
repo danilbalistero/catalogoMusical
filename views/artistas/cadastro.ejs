@@ -1,0 +1,16 @@
+<%- include('layout') %>
+
+<h2>Cadastrar Artista</h2>
+<form action="/artistas/novo" method="POST">
+  <label for="nome">Nome:</label>
+  <input type="text" name="nome" required>
+  
+  <label for="genero_id">Gênero:</label>
+  <select name="genero_id" required>
+    <% generos.forEach(genero => { %>
+      <option value="<%= genero.id %>"><%= genero.nome %></option>
+    <% }) %>
+  </select>
+  
+  <button type="submit">Cadastrar</button>
+</form>

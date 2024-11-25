@@ -1,33 +1,71 @@
 const { Genero } = require('../models');
 
 module.exports = {
-  async criar(req, res) {
-    try {
-      const genero = await Genero.create(req.body);
-      return res.status(201).json(genero);
-    } catch (error) {
-      return res.status(400).json({ error: error.message });
-    }
-  },
-
-  async listar(req, res) {
+  listarGeneros: async (req, res) => {
     try {
       const generos = await Genero.findAll();
-      return res.status(200).json(generos);
+      res.render('generos/lista', {
+        title: 'Lista de Gêneros Musicais',
+        generos
+      });
     } catch (error) {
-      return res.status(400).json({ error: error.message });
+      res.status(500).send('Erro ao listar gêneros');
     }
   },
 
-  async mostrar(req, res) {
+  exibirFormulario: (req, res) => {
+    res.render('generos/cadastro', { title: 'Cadastrar Novo Gênero' });
+  },
+
+  criarGenero: async (req, res) => {
     try {
-      const genero = await Genero.findByPk(req.params.id);
-      if (!genero) {
-        return res.status(404).json({ message: 'Gênero não encontrado' });
-      }
-      return res.status(200).json(genero);
+      const { nome } = req.body;
+      await Genero.create({ nome });
+      res.redirect('/generos');
     } catch (error) {
-      return res.status(400).json({ error: error.message });
+      res.status(500).send('Erro ao criar gênero');
+    }
+  },
+
+  editarGenero: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const genero = await Genero.findByPk(id);
+      if (!genero) {
+        return res.status(404).send('Gênero não encontrado');
+      }
+      res.render('generos/editar', { genero });
+    } catch (error) {
+      res.status(500).send('Erro ao editar gênero');
+    }
+  },
+
+  atualizarGenero: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { nome } = req.body;
+      const genero = await Genero.findByPk(id);
+      if (!genero) {
+        return res.status(404).send('Gênero não encontrado');
+      }
+      await genero.update({ nome });
+      res.redirect('/generos');
+    } catch (error) {
+      res.status(500).send('Erro ao atualizar gênero');
+    }
+  },
+
+  deletarGenero: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const genero = await Genero.findByPk(id);
+      if (!genero) {
+        return res.status(404).send('Gênero não encontrado');
+      }
+      await genero.destroy();
+      res.redirect('/generos');
+    } catch (error) {
+      res.status(500).send('Erro ao deletar gênero');
     }
   },
 };

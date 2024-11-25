@@ -1,21 +1,40 @@
-const { Artista } = require('../models');
+const { Artista, Genero, Disco } = require('../models');
 
-module.exports = {
-  async criar(req, res) {
+const artistaController = {
+  async listar(req, res) {
     try {
-      const artista = await Artista.create(req.body);
-      return res.status(201).json(artista);
+      const artistas = await Artista.findAll({
+        include: [{
+          model: Genero,  
+        }]
+      });
+      res.render('artistas/lista', { artistas });
     } catch (error) {
-      return res.status(400).json({ error: error.message });
+      console.error(error);
+      res.status(500).send("Erro ao listar artistas.");
     }
   },
 
-  async listar(req, res) {
+  async cadastrar(req, res) {
     try {
-      const artistas = await Artista.findAll();
-      return res.status(200).json(artistas);
+      const generos = await Genero.findAll();
+      res.render('artistas/cadastro', { generos });
     } catch (error) {
-      return res.status(400).json({ error: error.message });
+      console.error(error);
+      res.status(500).send("Erro ao carregar gêneros.");
+    }
+  },
+
+  async salvar(req, res) {
+    try {
+      const { nome, genero_id } = req.body;
+      await Artista.create({ nome, genero_id });
+      res.redirect('/artistas');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Erro ao cadastrar artista.");
     }
   },
 };
+
+module.exports = artistaController;

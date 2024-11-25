@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <title><%= title %></title>
+    <title><%= title || 'Catálogo Musical' %></title>
 </head>
 <body>
     <div class="container">
@@ -18,19 +18,19 @@
         
         <nav class="menu">
             <div class="menu-item">
-                <a href="/api/disco">
+                <a href="/disco">
                     <i class="fas fa-compact-disc"></i>
                     <span>Discos</span>
                 </a>
             </div>
             <div class="menu-item">
-                <a href="/api/artista">
+                <a href="/artistas">
                     <i class="fas fa-microphone-alt"></i>
                     <span>Artistas</span>
                 </a>
             </div>
             <div class="menu-item">
-                <a href="/api/genero">
+                <a href="/generos">
                     <i class="fas fa-music"></i>
                     <span>Gêneros</span>
                 </a>

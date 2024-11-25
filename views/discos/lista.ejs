@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styledisco.css">
+  <title>Catálogo Musical - Lista de Discos</title>
+</head>
+
+<body>
+  <header>
+    <h1>Catálogo de Discos</h1>
+    <nav>
+      <a href="/">Página Inicial</a>
+      <a href="/disco/novo" class="button">Adicionar Novo Disco</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Discos Cadastrados</h2>
+
+      <div class="discos-lista">
+        <% if (discos && discos.length> 0) { %>
+          <ul>
+            <% discos.forEach(disco=> { %>
+              <li class="disco-item">
+                <% if (disco.capa) { %>
+                  <img src="/uploads/<%= disco.capa %>" alt="Capa do disco <%= disco.titulo %>" class="disco-capa">
+                  <% } else { %>
+                    <img src="/images/placeholder.png" alt="Sem capa disponível" class="disco-capa">
+                    <% } %>
+
+                      <div class="disco-info">
+                        <h3>
+                          <%= disco.titulo %> (<%= disco.ano_lancamento %>)
+                        </h3>
+                        <p><strong>Artista:</strong>
+                          <%= disco.Artista ? disco.Artista.nome : 'N/A' %>
+                        </p>
+                        <p><strong>Gênero:</strong>
+                          <%= disco.Genero.nome %>
+                            </p>
+
+                              <% if (disco.Faixas && disco.Faixas.length> 0) { %>
+                                <p><strong>Faixas:</strong></p>
+                                <ul>
+                                  <% disco.Faixas.forEach(faixa=> { %>
+                                    <li>
+                                      <%= faixa.titulo %> - <%= faixa.duracao %>
+                                    </li>
+                                    <% }) %>
+                                </ul>
+                                <% } %>
+
+
+                                  <div class="disco-actions">
+                                    <a href="/discos/<%= disco.id %>/editar" class="button">Editar</a>
+                                    <form action="/discos/<%= disco.id %>?_method=DELETE" method="POST"
+                                      class="inline-form">
+                                      <button type="submit" class="button button-danger">Remover</button>
+                                    </form>
+                                  </div>
+                      </div>
+              </li>
+              <% }) %>
+          </ul>
+          <% } else { %>
+            <p>Não há discos cadastrados.</p>
+            <% } %>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>
